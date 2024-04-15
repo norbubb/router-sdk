@@ -1575,9 +1575,9 @@
   resolved "https://registry.npmjs.org/@uniswap/lib/-/lib-4.0.1-alpha.tgz"
   integrity sha512-f6UIliwBbRsgVLxIaBANF6w09tYqc6Y/qXdsrbEmXHyFA7ILiKrIwRFXe1yOg8M3cksgVsO9N7yuL2DdCGQKBA==
 
-"@uniswap/sdk-core@^4.2.0":
+"@jaguarswap/sdk-core@^4.2.0":
   version "4.2.0"
-  resolved "https://registry.yarnpkg.com/@uniswap/sdk-core/-/sdk-core-4.2.0.tgz#9930f133baec9c1118d891ebf8fcba7f7efc153d"
+  resolved "https://registry.yarnpkg.com/@jaguarswap/sdk-core/-/sdk-core-4.2.0.tgz#9930f133baec9c1118d891ebf8fcba7f7efc153d"
   integrity sha512-yXAMLHZRYYuh6KpN2nOlLTYBjGiopmI9WUB4Z0tyNkW4ZZub54cUt22eibpGbZAhRAMxclox9IPIs6wwrM3soQ==
   dependencies:
     "@ethersproject/address" "^5.0.2"
@@ -1611,7 +1611,7 @@
   dependencies:
     "@ethersproject/address" "^5.0.0"
     "@ethersproject/solidity" "^5.0.0"
-    "@uniswap/sdk-core" "^4.2.0"
+    "@jaguarswap/sdk-core" "^4.2.0"
     tiny-invariant "^1.1.0"
     tiny-warning "^1.0.3"
 
@@ -1632,14 +1632,14 @@
     base64-sol "1.0.1"
     hardhat-watcher "^2.1.1"
 
-"@uniswap/v3-sdk@^3.11.0":
+"@jaguarswap/v3-sdk@^3.11.0":
   version "3.11.0"
-  resolved "https://registry.yarnpkg.com/@uniswap/v3-sdk/-/v3-sdk-3.11.0.tgz#328309fbafddd8c618b7b6850bb99cacf6733a79"
+  resolved "https://registry.yarnpkg.com/@jaguarswap/v3-sdk/-/v3-sdk-3.11.0.tgz#328309fbafddd8c618b7b6850bb99cacf6733a79"
   integrity sha512-gz6Q6SlN34AXvxhyz181F90D4OuIkxLnzBAucEzB9Fv3Z+3orHZY/SpGaD02nP1VsNQVu/DQvOsdkPUDGn1Y9Q==
   dependencies:
     "@ethersproject/abi" "^5.0.12"
     "@ethersproject/solidity" "^5.0.9"
-    "@uniswap/sdk-core" "^4.2.0"
+    "@jaguarswap/sdk-core" "^4.2.0"
     "@uniswap/swap-router-contracts" "^1.2.1"
     "@uniswap/v3-periphery" "^1.1.1"
     "@uniswap/v3-staker" "1.0.0"

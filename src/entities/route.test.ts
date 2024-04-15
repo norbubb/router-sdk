@@ -1,5 +1,5 @@
-import { Ether, Token, WETH9, CurrencyAmount } from '@uniswap/sdk-core'
-import { Route as V3RouteSDK, Pool, FeeAmount, TickMath, encodeSqrtRatioX96 } from '@uniswap/v3-sdk'
+import { Ether, Token, WETH9, CurrencyAmount } from '@jaguarswap/sdk-core'
+import { Route as V3RouteSDK, Pool, FeeAmount, TickMath, encodeSqrtRatioX96 } from '@jaguarswap/v3-sdk'
 import { RouteV3 } from './route'
 import { Protocol } from './protocol'
 import { Route as V2RouteSDK, Pair } from '@uniswap/v2-sdk'
