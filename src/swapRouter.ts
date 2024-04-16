@@ -20,7 +20,7 @@ import { ADDRESS_THIS, MSG_SENDER } from './constants'
 import { ApproveAndCall, ApprovalTypes, CondensedAddLiquidityOptions } from './approveAndCall'
 import { Trade } from './entities/trade'
 import { Protocol } from './entities/protocol'
-import { MixedRoute, RouteV2, RouteV3 } from './entities/route'
+import { MixedRoute, RouteV3 } from './entities/route'
 import { MulticallExtended, Validation } from './multicallExtended'
 import { PaymentsExtended } from './paymentsExtended'
 import { MixedRouteTrade } from './entities/mixedRoute/trade'
@@ -358,13 +358,13 @@ export abstract class SwapRouter {
 
       for (const { route, inputAmount, outputAmount } of trades.swaps) {
         if (route.protocol == Protocol.V2) {
-          individualTrades.push(
-            new V2Trade(
-              route as RouteV2<Currency, Currency>,
-              trades.tradeType == TradeType.EXACT_INPUT ? inputAmount : outputAmount,
-              trades.tradeType
-            )
-          )
+          // individualTrades.push(
+          //   new V2Trade(
+          //     route as RouteV2<Currency, Currency>,
+          //     trades.tradeType == TradeType.EXACT_INPUT ? inputAmount : outputAmount,
+          //     trades.tradeType
+          //   )
+          // )
         } else if (route.protocol == Protocol.V3) {
           individualTrades.push(
             V3Trade.createUncheckedTrade({

@@ -4,14 +4,15 @@ import { Route as V2RouteSDK, Pair } from '@uniswap/v2-sdk'
 import { Route as V3RouteSDK, Pool } from '@jaguarswap/v3-sdk'
 import { Protocol } from './protocol'
 import { Currency, Price, Token } from '@jaguarswap/sdk-core'
+import { Currency as CurrencyV2 ,Price as PriceV2 } from '@uniswap/sdk-core'
 import { MixedRouteSDK } from './mixedRoute/route'
 
-export interface IRoute<TInput extends Currency, TOutput extends Currency, TPool extends Pool | Pair> {
+export interface IRoute<TInput extends Currency | CurrencyV2, TOutput extends Currency | CurrencyV2, TPool extends Pool | Pair> {
   protocol: Protocol
   // array of pools if v3 or pairs if v2
   pools: TPool[]
   path: Token[]
-  midPrice: Price<TInput, TOutput>
+  midPrice: Price<TInput, TOutput> | PriceV2<TInput, TOutput>
   input: TInput
   output: TOutput
 }

@@ -62,31 +62,33 @@ export class MixedRouteSDK<TInput extends Currency, TOutput extends Currency> {
    * Returns the mid price of the route
    */
   public get midPrice(): Price<TInput, TOutput> {
-    if (this._midPrice !== null) return this._midPrice
+    // biome-ignore lint/style/noNonNullAssertion: <explanation>
+    return this._midPrice!
+    // if (this._midPrice !== null) return this._midPrice
 
-    const price = this.pools.slice(1).reduce(
-      ({ nextInput, price }, pool) => {
-        return nextInput.equals(pool.token0)
-          ? {
-              nextInput: pool.token1,
-              price: price.multiply(pool.token0Price),
-            }
-          : {
-              nextInput: pool.token0,
-              price: price.multiply(pool.token1Price),
-            }
-      },
-      this.pools[0].token0.equals(this.input.wrapped)
-        ? {
-            nextInput: this.pools[0].token1,
-            price: this.pools[0].token0Price,
-          }
-        : {
-            nextInput: this.pools[0].token0,
-            price: this.pools[0].token1Price,
-          }
-    ).price
+    // const price = this.pools.slice(1).reduce(
+    //   ({ nextInput, price }, pool) => {
+    //     return nextInput.equals(pool.token0)
+    //       ? {
+    //           nextInput: pool.token1,
+    //           price: price.multiply(pool.token0Price as never),
+    //         }
+    //       : {
+    //           nextInput: pool.token0,
+    //           price: price.multiply(pool.token1Price as never),
+    //         }
+    //   },
+    //   this.pools[0].token0.equals(this.input.wrapped)
+    //     ? {
+    //         nextInput: this.pools[0].token1,
+    //         price: this.pools[0].token0Price,
+    //       }
+    //     : {
+    //         nextInput: this.pools[0].token0,
+    //         price: this.pools[0].token1Price,
+    //       }
+    // ).price
 
-    return (this._midPrice = new Price(this.input, this.output, price.denominator, price.numerator))
+    // return (this._midPrice = new Price(this.input, this.output, price.denominator, price.numerator))
   }
 }
