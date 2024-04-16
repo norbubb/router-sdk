@@ -1,11 +1,11 @@
 import { Currency, CurrencyAmount, Fraction, Percent, Price, TradeType } from '@jaguarswap/sdk-core'
-import { Pair, Route as V2RouteSDK, Trade as V2TradeSDK } from '@uniswap/v2-sdk'
+import { Pair, Route as V2RouteSDK } from '@uniswap/v2-sdk'
 import { Pool, Route as V3RouteSDK, Trade as V3TradeSDK } from '@jaguarswap/v3-sdk'
 import invariant from 'tiny-invariant'
 import { ONE, ONE_HUNDRED_PERCENT, ZERO, ZERO_PERCENT } from '../constants'
 import { MixedRouteSDK } from './mixedRoute/route'
 import { MixedRouteTrade as MixedRouteTradeSDK } from './mixedRoute/trade'
-import { IRoute, MixedRoute, RouteV2, RouteV3 } from './route'
+import { IRoute, MixedRoute, RouteV3 } from './route'
 
 export class Trade<TInput extends Currency, TOutput extends Currency, TTradeType extends TradeType> {
   public readonly routes: IRoute<TInput, TOutput, Pair | Pool>[]
@@ -50,15 +50,17 @@ export class Trade<TInput extends Currency, TOutput extends Currency, TTradeType
     this.swaps = []
     this.routes = []
     // wrap v2 routes
-    for (const { routev2, inputAmount, outputAmount } of v2Routes) {
-      const route = new RouteV2(routev2)
-      this.routes.push(route)
-      this.swaps.push({
-        route,
-        inputAmount,
-        outputAmount,
-      })
-    }
+    // FIXME
+    v2Routes;
+    // for (const { routev2, inputAmount, outputAmount } of v2Routes) {
+    //   const route = new RouteV2(routev2)
+    //   this.routes.push(route)
+    //   this.swaps.push({
+    //     route,
+    //     inputAmount,
+    //     outputAmount,
+    //   })
+    // }
     // wrap v3 routes
     for (const { routev3, inputAmount, outputAmount } of v3Routes) {
       const route = new RouteV3(routev3)
@@ -300,16 +302,17 @@ export class Trade<TInput extends Currency, TOutput extends Currency, TTradeType
       outputAmount: CurrencyAmount<TOutput>
     }[] = []
 
-    for (const { routev2, amount } of v2Routes) {
-      const v2Trade = new V2TradeSDK(routev2, amount, tradeType)
-      const { inputAmount, outputAmount } = v2Trade
+    v2Routes
+    // for (const { routev2, amount } of v2Routes) {
+    //   const v2Trade = new V2TradeSDK(routev2, amount, tradeType)
+    //   const { inputAmount, outputAmount } = v2Trade
 
-      populatedV2Routes.push({
-        routev2,
-        inputAmount,
-        outputAmount,
-      })
-    }
+    //   populatedV2Routes.push({
+    //     routev2,
+    //     inputAmount,
+    //     outputAmount,
+    //   })
+    // }
 
     for (const { routev3, amount } of v3Routes) {
       const v3Trade = await V3TradeSDK.fromRoute(routev3, amount, tradeType)
@@ -348,7 +351,7 @@ export class Trade<TInput extends Currency, TOutput extends Currency, TTradeType
     amount: TTradeType extends TradeType.EXACT_INPUT ? CurrencyAmount<TInput> : CurrencyAmount<TOutput>,
     tradeType: TTradeType
   ): Promise<Trade<TInput, TOutput, TTradeType>> {
-    let v2Routes: {
+    const v2Routes: {
       routev2: V2RouteSDK<TInput, TOutput>
       inputAmount: CurrencyAmount<TInput>
       outputAmount: CurrencyAmount<TOutput>
@@ -365,12 +368,13 @@ export class Trade<TInput extends Currency, TOutput extends Currency, TTradeType
       inputAmount: CurrencyAmount<TInput>
       outputAmount: CurrencyAmount<TOutput>
     }[] = []
-
-    if (route instanceof V2RouteSDK) {
-      const v2Trade = new V2TradeSDK(route, amount, tradeType)
-      const { inputAmount, outputAmount } = v2Trade
-      v2Routes = [{ routev2: route, inputAmount, outputAmount }]
-    } else if (route instanceof V3RouteSDK) {
+    v2Routes
+    // if (route instanceof V2RouteSDK) {
+    //   const v2Trade = new V2TradeSDK(route, amount, tradeType)
+    //   const { inputAmount, outputAmount } = v2Trade
+    //   v2Routes = [{ routev2: route, inputAmount, outputAmount }]
+    // } else 
+    if (route instanceof V3RouteSDK) {
       const v3Trade = await V3TradeSDK.fromRoute(route, amount, tradeType)
       const { inputAmount, outputAmount } = v3Trade
       v3Routes = [{ routev3: route, inputAmount, outputAmount }]
